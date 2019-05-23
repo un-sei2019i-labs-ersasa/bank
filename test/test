@@ -12,7 +12,7 @@ public class Algoritmo1 {
              
         InputStreamReader a= new InputStreamReader(in);
         BufferedReader rd= new BufferedReader(a);
-        System.out.println("opcion \n 1. \n 2.Multiplicacion \n 3. ");
+        System.out.println("opcion \n 1. \n 2.Multiplicacion \n 3. ultimo digito");
         int opcion=Integer.parseInt(rd.readLine());
         switch(opcion){
             case 1 :
@@ -25,8 +25,13 @@ public class Algoritmo1 {
                     System.out.println("Rmult");
                 break;
             case 3:
+		int n=Integer.parseInt(rd.readLine());
+                int result=n%10;
+                System.out.println(result);
                 break;
         }
     }
-    
 }
+
+
+
