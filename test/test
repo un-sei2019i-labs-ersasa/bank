@@ -1,0 +1,27 @@
+package algoritmo1;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import static java.lang.System.in;
+
+public class Algoritmo1 {
+
+
+    public static void main(String[] args) throws IOException {
+             
+        InputStreamReader a= new InputStreamReader(in);
+        BufferedReader rd= new BufferedReader(a);
+        System.out.println("opcion \n 1. \n 2. \n 3. ");
+        int opcion=rd.read();
+        switch(opcion){
+            case 1 :
+                break;
+            case 2:
+                break;
+            case 3:
+                break;
+        }
+    }
+    
+}
