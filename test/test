@@ -12,16 +12,20 @@ public class Algoritmo1 {
              
         InputStreamReader a= new InputStreamReader(in);
         BufferedReader rd= new BufferedReader(a);
-        System.out.println("opcion \n 1. \n 2. \n 3. ");
-        int opcion=rd.read();
+        System.out.println("opcion \n 1. \n 2. \n 3.ultimo digito ");
+        int opcion=Integer.parseInt(rd.readLine());
         switch(opcion){
             case 1 :
                 break;
             case 2:
                 break;
             case 3:
+		int n=Integer.parseInt(rd.readLine());
+                int result=n%10;
+                System.out.println(result);
                 break;
         }
     }
     
 }
+
