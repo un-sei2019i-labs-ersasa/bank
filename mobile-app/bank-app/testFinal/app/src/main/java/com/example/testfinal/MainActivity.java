@@ -1,6 +1,7 @@
 package com.example.testfinal;
 
 import android.database.Cursor;
+import android.database.SQLException;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -31,15 +32,21 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 EditText identificacion=(EditText)findViewById(R.id.id_txt);
                 EditText password=(EditText)findViewById(R.id.pass_txt);
-                 Cursor cursor= helper.validadInformacion(Integer.valueOf(identificacion.toString()),Integer.valueOf(password.toString()));
-                 if(cursor.getCount()>0){
-                     Toast.makeText(getApplicationContext(),"SATISFACTORIO", Toast.LENGTH_LONG).show();
-                 }
-                 else{
-                     Toast.makeText(getApplicationContext(),"USUARIO O CONTRASENIA INCORRECTOS", Toast.LENGTH_LONG).show();
-                 }
-                 identificacion.setText("");
-                 password.setText("");
+
+                try {
+                    Cursor cursor = helper.validadInformacion(Integer.valueOf(identificacion.toString()), Integer.valueOf(password.toString()));
+                    if (cursor.getCount() > 0) {
+                        Toast.makeText(getApplicationContext(), "SATISFACTORIO", Toast.LENGTH_LONG).show();
+                    } else {
+                        Toast.makeText(getApplicationContext(), "USUARIO O CONTRASENIA INCORRECTOS", Toast.LENGTH_LONG).show();
+                    }
+                    identificacion.setText("");
+                    password.setText("");
+                }
+                catch (SQLException e){
+                    e.printStackTrace();
+                }
+
             }
         });
     }
