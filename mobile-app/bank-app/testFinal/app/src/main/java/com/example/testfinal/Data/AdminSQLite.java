@@ -16,7 +16,7 @@ public class AdminSQLite extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase Base) {
-    Base.execSQL("create table usuarios(identificacion int primary key, password int)");
+    Base.execSQL("create table usuarios(identificacion String primary key, password int)");
     Base.execSQL("insert into usuarios (identificacion,password) values(123456,123456)");
     }
 
@@ -31,7 +31,7 @@ public class AdminSQLite extends SQLiteOpenHelper {
     public void cerrar(){
         this.close();
     }
-    public void insertar(int identificacion, int password){
+    public void insertar(String identificacion, int password){
         ContentValues registro= new ContentValues();
         registro.put("identificacion",identificacion);
         registro.put("password", password);
@@ -39,7 +39,7 @@ public class AdminSQLite extends SQLiteOpenHelper {
 
     }
 
-    public boolean validaInformacion(int id, int pass) throws SQLException  {
+    public boolean validaInformacion(String id, int pass) throws SQLException  {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(
                 "SELECT * FROM " + "usuarios"
