@@ -1,5 +1,6 @@
 package com.example.testfinal.dataAccess.repositories;
 
+import android.content.ContentValues;
 import android.content.Context;
 
 import com.example.testfinal.dataAccess.database.Database;
@@ -17,8 +18,12 @@ public class TransactionsRepository {
     public TransactionsRepository(Database db) {
         this.db = new Database(this.context,"db1",null,1);
     }
-    public void createTransaction(){
-
+    public void createTransaction(Transaction transaction){
+        ContentValues values = new ContentValues();
+        values.put("id", transaction.getId());
+        //falta date,mailer,reciever 
+        values.put("monto", transaction.getMonto());
+        db.getWritableDatabase().insert("transactions", null, values);
     }
     public Transaction getTransactionById(int id){
     Transaction transaction= new Transaction();
