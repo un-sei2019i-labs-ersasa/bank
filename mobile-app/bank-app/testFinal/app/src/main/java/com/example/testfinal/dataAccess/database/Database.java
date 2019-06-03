@@ -14,8 +14,9 @@ public class Database extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase Base) {
-    Base.execSQL("create table usuarios(identificacion int primary key, password int)");
-    Base.execSQL("insert into usuarios (identificacion,password) values(123456,123456)");
+    Base.execSQL("create table users(id int primary key,name varchar,account int, password int, email varchar)");
+    Base.execSQL("insert into usuarios (id,name,account,password,email) " +
+            "values(123456,'admin',0,123456,'admin@example.com')");
     }
 
     @Override
@@ -37,17 +38,16 @@ public class Database extends SQLiteOpenHelper {
 
     }
 
-    public boolean validaInformacion(int id, int pass) throws SQLException  {
+    public boolean login(int id, int pass) throws SQLException  {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(
-                "SELECT * FROM " + "usuarios"
-                        + " WHERE " + "identificacion" + " = '" + id + "'", null);
+                "SELECT * FROM users WHERE id="+id, null);
 
         if (cursor != null && cursor.moveToFirst()&& cursor.getCount()>0) {
             cursor = db.rawQuery(
-                    "SELECT * FROM " + "usuarios"
-                            + " WHERE " + "password" + " = '" + pass + "'", null);
+                    "SELECT * FROM users WHERE password="+pass, null);
             if (cursor != null && cursor.moveToFirst()&& cursor.getCount()>0) {
+                cursor.close();
             return true;
             }
             }
