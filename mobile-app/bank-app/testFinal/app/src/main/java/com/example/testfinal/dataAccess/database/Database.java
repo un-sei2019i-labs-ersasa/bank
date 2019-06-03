@@ -15,7 +15,7 @@ public class Database extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase Base) {
     Base.execSQL("create table users(id int primary key,name varchar,account int, password int, email varchar)");
-    Base.execSQL("insert into usuarios (id,name,account,password,email) " +
+    Base.execSQL("insert into users (id,name,account,password,email) " +
             "values(123456,'admin',0,123456,'admin@example.com')");
     }
 
