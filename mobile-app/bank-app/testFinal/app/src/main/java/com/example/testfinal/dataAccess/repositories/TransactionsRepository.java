@@ -27,8 +27,9 @@ public class TransactionsRepository {
     public void updateTransaction(Transaction transaction, int id){
 
     }
-    public void deleteTransaction(){
-
+    public void deleteTransaction(int id){
+        db.getWritableDatabase().delete("transactions", "id=" + id + "\"", null);
+        db.close();
     }
 
 }
