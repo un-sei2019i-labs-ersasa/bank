@@ -1,4 +1,4 @@
-package com.example.testfinal;
+package com.example.testfinal.presentation;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -8,11 +8,19 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+<<<<<<< HEAD:mobile-app/bank-app/testFinal/app/src/main/java/com/example/testfinal/MainActivity.java
+=======
+import com.example.testfinal.R;
+>>>>>>> fca6e8b934503afb251feaac6a5246ebaf9866ef:mobile-app/bank-app/testFinal/app/src/main/java/com/example/testfinal/presentation/MainActivity.java
 import com.example.testfinal.dataAccess.database.Database;
 
 public class MainActivity extends AppCompatActivity {
 
+<<<<<<< HEAD:mobile-app/bank-app/testFinal/app/src/main/java/com/example/testfinal/MainActivity.java
     Button btn_login;
+=======
+    Button ingresar;
+>>>>>>> fca6e8b934503afb251feaac6a5246ebaf9866ef:mobile-app/bank-app/testFinal/app/src/main/java/com/example/testfinal/presentation/MainActivity.java
     Database helper= new Database(this,"Base", null, 1);
 
     @Override

@@ -1,5 +1,6 @@
 package com.example.testfinal.dataAccess.database;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
@@ -13,8 +14,8 @@ public class Database extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase Base) {
-    Base.execSQL("create table users(id int primary key, name varchar, account int, password int, email varchar)");
-    Base.execSQL("INSERT INTO users (id,name,account,password,email) values (123456,'admin',0,123456,'admin@email.com')");
+    Base.execSQL("create table usuarios(identificacion int primary key, password int)");
+    Base.execSQL("insert into usuarios (identificacion,password) values(123456,123456)");
     }
 
     @Override
@@ -28,26 +29,30 @@ public class Database extends SQLiteOpenHelper {
     public void cerrar(){
         this.close();
     }
+    public void insertar(int identificacion, int password){
+        ContentValues registro= new ContentValues();
+        registro.put("identificacion",identificacion);
+        registro.put("password", password);
+        this.getWritableDatabase().insert("usuarios", null ,registro);
 
-    public boolean login(int id_temp, int pass) throws SQLException  {
+    }
+
+    public boolean validaInformacion(int id, int pass) throws SQLException  {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(
-                "SELECT * FROM users WHERE id = " + id_temp, null);
+                "SELECT * FROM " + "usuarios"
+                        + " WHERE " + "identificacion" + " = '" + id + "'", null);
 
-        if (cursor.getCount()>0) {
+        if (cursor != null && cursor.moveToFirst()&& cursor.getCount()>0) {
             cursor = db.rawQuery(
-                    "SELECT * FROM users WHERE password= " + pass, null);
-            if (cursor.getCount()>0) {
-                db.close();
-                return true;
-            }
-            else{
-                db.close();
-                return false;
+                    "SELECT * FROM " + "usuarios"
+                            + " WHERE " + "password" + " = '" + pass + "'", null);
+            if (cursor != null && cursor.moveToFirst()&& cursor.getCount()>0) {
+            return true;
             }
             }
             cursor.close();
             db.close();
-            return false;
+        return false;
     }
 }

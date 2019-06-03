@@ -1,5 +1,6 @@
 package com.example.testfinal.dataAccess.models;
 
+<<<<<<< HEAD
 import java.util.Date;
 
 public class Transaction {
@@ -59,4 +60,7 @@ public class Transaction {
     public void setMonto(double monto) {
         this.ammount = monto;
     }
+=======
+public class Transaction {
+>>>>>>> fca6e8b934503afb251feaac6a5246ebaf9866ef
 }
