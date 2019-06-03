@@ -1,7 +1,6 @@
 package com.example.testfinal.dataAccess.models;
 
 public class User {
-<<<<<<< HEAD
     private int id;
     private String name;
     private Account account;
@@ -64,6 +63,4 @@ public class User {
         this.email = email;
     }
 
-=======
->>>>>>> fca6e8b934503afb251feaac6a5246ebaf9866ef
 }

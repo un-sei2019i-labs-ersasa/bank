@@ -1,6 +1,4 @@
 package com.example.testfinal.dataAccess.repositories;
-
-<<<<<<< HEAD
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -51,7 +49,4 @@ public class AccountRepository {
         db.getWritableDatabase().delete("accounts","owner= "+owner,null);
         db.close();
     }
-=======
-public class AccountRepository {
->>>>>>> fca6e8b934503afb251feaac6a5246ebaf9866ef
 }

@@ -1,7 +1,6 @@
 package com.example.testfinal.dataAccess.models;
 
 public class Account {
-<<<<<<< HEAD
     private int number;
     private double balance;
     private String owner;
@@ -41,6 +40,4 @@ public class Account {
     public void setOwner(String owner) {
         this.owner = owner;
     }
-=======
->>>>>>> fca6e8b934503afb251feaac6a5246ebaf9866ef
 }
