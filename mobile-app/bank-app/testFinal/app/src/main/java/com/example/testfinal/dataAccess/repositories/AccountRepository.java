@@ -27,7 +27,7 @@ public class AccountRepository {
     }
     public Account getCountById(int id){
         Account account= new Account(0);
-        String select= "SELECT * FROM TABLE usuarios WHERE identification="+id+"\"";
+        String select= "SELECT * FROM TABLE accounts WHERE id ="+id;
         Cursor cursor=db.getWritableDatabase().rawQuery(select,null);
         if(cursor.moveToFirst()) {
             account.setNumber(cursor.getInt(0));
@@ -37,12 +37,12 @@ public class AccountRepository {
         cursor.close();
         return account;
     }
-    public void updateAccount(Account account,int number){
+    public int updateAccount(Account account,int number){
         ContentValues values = new ContentValues();
         values.put("number", account.getNumber());
         values.put("owner", account.getOwner());
         values.put("balance", account.getBalance());
-        db.getWritableDatabase().update("accounts",values,"number ="+number,null);
+       return db.getWritableDatabase().update("accounts",values,"number ="+number,null);
     }
 
     public void deleteAccount(String owner){

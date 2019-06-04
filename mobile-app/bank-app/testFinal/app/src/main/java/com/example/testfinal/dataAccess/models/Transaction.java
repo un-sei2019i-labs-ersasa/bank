@@ -53,11 +53,11 @@ public class Transaction {
         this.reciever = reciever;
     }
 
-    public double getMonto() {
+    public double getAmmount() {
         return ammount;
     }
 
-    public void setMonto(double monto) {
-        this.ammount = monto;
+    public void setAmmount(double ammount) {
+        this.ammount = ammount;
     }
 }

@@ -31,7 +31,7 @@ public class UserRepository {
     }
 
     public User getUserById(int id) {
-        String select = "SELECT * FROM TABLE users WHERE identification=" + id + "\"";
+        String select = "SELECT * FROM TABLE users WHERE id="+ id ;
         Cursor cursor = db.getWritableDatabase().rawQuery(select, null);
         User user = new User();
         if (cursor.moveToFirst()) {
@@ -55,12 +55,12 @@ public class UserRepository {
         values.put("password", user.getPassword());
         values.put("email", user.getEmail());
         return db.getWritableDatabase().update("users", values,
-                "password =" + password + "\"", null);
+                "password =" + password, null);
 
     }
 
     public void deleteUser(int id) {
-        db.getWritableDatabase().delete("users", "id=" + id + "\"", null);
+        db.getWritableDatabase().delete("users", "id=" + id, null);
         db.close();
     }
 }
