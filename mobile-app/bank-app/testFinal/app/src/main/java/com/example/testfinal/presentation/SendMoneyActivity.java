@@ -5,7 +5,7 @@ import android.os.Bundle;
 
 import com.example.testfinal.R;
 
-public class JoinActivity extends AppCompatActivity {
+public class SendMoneyActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

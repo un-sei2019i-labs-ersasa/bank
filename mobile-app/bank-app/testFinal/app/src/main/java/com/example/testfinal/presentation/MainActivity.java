@@ -10,7 +10,6 @@ import android.widget.Toast;
 
 import com.example.testfinal.R;
 import com.example.testfinal.dataAccess.database.Database;
-import com.example.testfinal.presentation.JoinActivity;
 
 public class MainActivity extends AppCompatActivity {
     Button btn_login;
@@ -46,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
             }});
     }
     public void openJoinActivity(){
-        Intent intent = new Intent(this, JoinActivity.class );
+        Intent intent = new Intent(this, SendMoneyActivity.class );
         startActivity(intent);
     }
 }
