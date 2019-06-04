@@ -1,4 +1,5 @@
 package com.example.testfinal;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -29,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
                 boolean cursor = helper.login(Integer.valueOf(id.getText().toString()),
                         Integer.valueOf(password.getText().toString()));
                 if (cursor) {
-                    Toast.makeText(getApplicationContext(), "SATISFACTORIO", Toast.LENGTH_LONG).show();
+                    openJoinActivity();
                 } else {
                     Toast.makeText(getApplicationContext(), "USUARIO O CONTRASENIA INCORRECTOS", Toast.LENGTH_LONG).show();
                 }
@@ -40,5 +41,9 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "CAMPO VACIO", Toast.LENGTH_LONG).show();
                 }
             }});
+    }
+    public void openJoinActivity(){
+        Intent intent = new Intent(this, JoinActivity.class );
+        startActivity(intent);
     }
 }
