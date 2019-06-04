@@ -18,23 +18,27 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        btn_login =(Button)findViewById(R.id.btn_ingresar);
+        btn_login =findViewById(R.id.btn_ingresar);
         btn_login.setOnClickListener(new View.OnClickListener(){
 
             @Override
             public void onClick(View v) {
-                EditText id=(EditText)findViewById(R.id.id_txt);
-                EditText password=(EditText)findViewById(R.id.pass_txt);
-                  Toast.makeText(getApplicationContext(), password.getText().toString(), Toast.LENGTH_LONG).show();
-                    boolean cursor = helper.login(Integer.valueOf(id.getText().toString()),
-                            Integer.valueOf(password.getText().toString()));
-                    if (cursor) {
-                        Toast.makeText(getApplicationContext(), "SATISFACTORIO", Toast.LENGTH_LONG).show();
-                    } else {
-                        Toast.makeText(getApplicationContext(), "USUARIO O CONTRASENIA INCORRECTOS", Toast.LENGTH_LONG).show();
-                    }
-                    id.setText("");
-                    password.setText("");
-                }});
+                EditText id = findViewById(R.id.id_txt);
+                EditText password = findViewById(R.id.pass_txt);
+                if(!id.getText().toString().isEmpty() && !password.getText().toString().isEmpty()){
+                boolean cursor = helper.login(Integer.valueOf(id.getText().toString()),
+                        Integer.valueOf(password.getText().toString()));
+                if (cursor) {
+                    Toast.makeText(getApplicationContext(), "SATISFACTORIO", Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(getApplicationContext(), "USUARIO O CONTRASENIA INCORRECTOS", Toast.LENGTH_LONG).show();
+                }
+                id.setText("");
+                password.setText("");
+            }
+                else{
+                    Toast.makeText(getApplicationContext(), "CAMPO VACIO", Toast.LENGTH_LONG).show();
+                }
+            }});
     }
 }
