@@ -27,7 +27,7 @@ public class UserRepository {
         values.put("account", user.getAccount().getNumber());
         values.put("password", user.getPassword());
         values.put("email", user.getEmail());
-        db.getWritableDatabase().insert("usuers", null, values);
+        db.getWritableDatabase().insert("users", null, values);
     }
 
     public User getUserById(int id) {
