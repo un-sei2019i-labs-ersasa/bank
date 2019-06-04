@@ -30,7 +30,6 @@
 
     <include
         layout="@layout/content_main"
-        android:layout_height="552dp"
-        />
+        android:layout_height="552dp" />
 
 </android.support.design.widget.CoordinatorLayout>
