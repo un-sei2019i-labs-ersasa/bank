@@ -25,13 +25,13 @@ public class AccountRepository {
         values.put("balance", account.getBalance());
     db.getWritableDatabase().insert("accounts",null,values);
     }
-    public Account getCountById(int id){
+    public Account getAccountById(int id){
         Account account= new Account(0);
         String select= "SELECT * FROM TABLE accounts WHERE id ="+id;
         Cursor cursor=db.getWritableDatabase().rawQuery(select,null);
         if(cursor.moveToFirst()) {
             account.setNumber(cursor.getInt(0));
-            account.setOwner(cursor.getString(1));
+            account.setOwner(cursor.getInt(1));
             account.setBalance(cursor.getInt(2));
         }
         cursor.close();

@@ -3,9 +3,9 @@ package com.example.testfinal.dataAccess.models;
 public class Account {
     private int number;
     private double balance;
-    private String owner;
+    private int owner;
 
-    public Account(int number, int balance, String owner) {
+    public Account(int number, int balance, int owner) {
         this.number = number;
         this.balance = balance;
         this.owner = owner;
@@ -14,7 +14,7 @@ public class Account {
     public Account(int number) {
         this.number=number;
         this.balance=0;
-        this.owner=null;
+        this.owner=0;
     }
 
     public int getNumber() {
@@ -33,11 +33,11 @@ public class Account {
         this.balance = balance;
     }
 
-    public String getOwner() {
+    public int getOwner() {
         return owner;
     }
 
-    public void setOwner(String owner) {
+    public void setOwner(int owner) {
         this.owner = owner;
     }
 }

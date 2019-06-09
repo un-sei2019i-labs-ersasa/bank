@@ -43,6 +43,9 @@ public class UserRepository {
             user.setPassword(cursor.getInt(3));
             user.setEmail(cursor.getString(4));
         }
+        else{
+            return null;
+        }
         cursor.close();
         return user;
     }

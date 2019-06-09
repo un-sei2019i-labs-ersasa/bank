@@ -7,4 +7,8 @@
     <string name="button">Button</string>
     <string name="username">username</string>
     <string name="user">User</string>
+    <string name="title_activity_send_money_test">SendMoneyTest</string>
+    <string name="destinatario">Destinatario</string>
+    <string name="cantidad">CANTIDAD</string>
+    <string name="enviar_dinero">Enviar Dinero</string>
 </resources>

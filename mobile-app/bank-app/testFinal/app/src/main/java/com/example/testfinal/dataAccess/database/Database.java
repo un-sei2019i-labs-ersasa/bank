@@ -1,6 +1,5 @@
 package com.example.testfinal.dataAccess.database;
 
-import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
@@ -14,11 +13,44 @@ public class Database extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase Base) {
-    Base.execSQL("create table users(id int primary key,name varchar,account int, password int, email varchar)");
-    Base.execSQL("insert into users (id,name,account,password,email) " +
-            "values(123456,'admin',0,123456,'admin@example.com')");
-    }
+        //*********************************
+        //******CREACION TABLA CUENTAS*****
+        //**********************************
+        Base.execSQL("create table accounts(number int ," +
+                "balance double, owner int, primary key(number))");
+        //**********************************
+        //******CREACION TABLA USUARIOS*****
+        //**********************************
+        Base.execSQL("create table users(id int, name varchar " +
+                ",account int, password int, email varchar, primary key(id), foreign key (account) references accounts(number))");
 
+        //REVISAR EL INCREMENTO//*********************************************************************************
+
+        //***************************************
+        //******CREACION TABLA TRANSACCIONES*****
+        //***************************************
+        Base.execSQL("create table transactions(id int primary key autoincrement," +
+                "date varchar,mailer int, reciever int, ammount double," +
+                "foreign key (mailer)references users(id),foreign key (reciever)references users(id))");
+
+        //***********************************
+        //*******INGRESAR DATOS EN TABLAS****
+        //***********************************
+        Base.execSQL("insert into accounts (number,balance,owner) " +
+                "values(1234567998,100.567,123456)");
+
+        Base.execSQL("insert into accounts (number,balance,owner) " +
+                "values(23456567654,800.887,234567)");
+
+    Base.execSQL("insert into users (id,name,account,password,email) " +
+                "values(234567,'RECIEVER_TEST',23456567654,234567,'user1@example.com')");
+
+    Base.execSQL("insert into users (id,name,account,password,email) " +
+            "values(123456,'admin',1234567998,123456,'admin@example.com')");
+
+    Base.execSQL("insert into users (id,name,account,password,email) " +
+                "values(345678,'MAILER_TEST',0,345678,'user2@example.com')");
+    }
     @Override
     public void onUpgrade(SQLiteDatabase Base, int oldVersion, int newVersion) {
 
@@ -30,28 +62,17 @@ public class Database extends SQLiteOpenHelper {
     public void cerrar(){
         this.close();
     }
-    public void insertar(int identificacion, int password){
-        ContentValues registro= new ContentValues();
-        registro.put("identificacion",identificacion);
-        registro.put("password", password);
-        this.getWritableDatabase().insert("usuarios", null ,registro);
-
-    }
 
     public boolean login(int id, int pass) throws SQLException  {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(
-                "SELECT * FROM users WHERE id="+id, null);
-
-        if (cursor != null && cursor.moveToFirst()&& cursor.getCount()>0) {
-            cursor = db.rawQuery(
-                    "SELECT * FROM users WHERE password="+pass, null);
-            if (cursor != null && cursor.moveToFirst()&& cursor.getCount()>0) {
-                cursor.close();
-            return true;
-            }
-            }
+                "SELECT * FROM users WHERE (id= "+ id +") AND ( password= "+ pass+")", null);
+        if(cursor.moveToFirst() && cursor.getCount()>0){
             cursor.close();
+            db.close();
+         return true;
+        }
+        cursor.close();
             db.close();
         return false;
     }
