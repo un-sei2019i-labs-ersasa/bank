@@ -13,19 +13,14 @@ public class TransactionRepository {
     private Database db;
     Context context;
 
-    public TransactionRepository(Context context){
+    public TransactionRepository(Context context) {
         this.context = context;
-    }
-
-    public TransactionRepository(Database db) {
-        this.db = new Database(this.context,"db1",null,1);
+        this.db = new Database(this.context, "Base", null, 1);
     }
 
 
     public void createTransaction(Transaction transaction){
         ContentValues values = new ContentValues();
-        //arreglar
-        values.put("id", transaction.getId());
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         String date = sdf.format(transaction.getDate());
         values.put("date",date);
@@ -36,7 +31,7 @@ public class TransactionRepository {
     }
     public Transaction getTransactionById(int id){
     Transaction transaction= new Transaction();
-        String select= "SELECT * FROM TABLE transactions WHERE id="+id+"\"";
+        String select= "SELECT * FROM transactions WHERE id="+id+"\"";
         Cursor cursor=db.getWritableDatabase().rawQuery(select,null);
         if (cursor.moveToFirst()) {
             transaction.setId(cursor.getInt(0));

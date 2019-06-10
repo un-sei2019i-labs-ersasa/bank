@@ -6,6 +6,7 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+
 public class Database extends SQLiteOpenHelper {
     public Database(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
         super(context, name, factory, version);
@@ -15,52 +16,36 @@ public class Database extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase Base) {
         //*********************************
         //******CREACION TABLA CUENTAS*****
-        //**********************************
-        Base.execSQL("create table accounts(number int ," +
-                "balance double, owner int, primary key(number))");
-        //**********************************
+        //*********************************
+       Base.execSQL("CREATE TABLE accounts(number INTEGER NOT NULL PRIMARY KEY, balance FLOAT NOT NULL, owner INTEGER  NOT NULL)");
+       //**********************************
         //******CREACION TABLA USUARIOS*****
         //**********************************
-        Base.execSQL("create table users(id int, name varchar " +
-                ",account int, password int, email varchar, primary key(id), foreign key (account) references accounts(number))");
 
-        //REVISAR EL INCREMENTO//*********************************************************************************
-
+        Base.execSQL("CREATE TABLE users(id INTEGER NOT NULL PRIMARY KEY, name TEXT NOT NULL, number_FK INTEGER NOT NULL" +
+                ", password INTEGER NOT NULL, email INTEGER NOT NULL, FOREIGN KEY(number_FK) REFERENCES accounts(number))");
         //***************************************
         //******CREACION TABLA TRANSACCIONES*****
         //***************************************
-        Base.execSQL("create table transactions(id int primary key autoincrement," +
-                "date varchar,mailer int, reciever int, ammount double," +
-                "foreign key (mailer)references users(id),foreign key (reciever)references users(id))");
-
+       Base.execSQL("CREATE TABLE transactions(date VARCHAR(11),mailer INTEGER, reciever INTEGER, ammount FLOAT" +
+                ",FOREIGN KEY (mailer) REFERENCES users(id),FOREIGN KEY (reciever) REFERENCES users(id))");
         //***********************************
         //*******INGRESAR DATOS EN TABLAS****
         //***********************************
-        Base.execSQL("insert into accounts (number,balance,owner) " +
-                "values(1234567998,100.567,123456)");
+        Base.execSQL("INSERT INTO accounts VALUES(123456,100,123456)");
 
-        Base.execSQL("insert into accounts (number,balance,owner) " +
-                "values(23456567654,800.887,234567)");
+        Base.execSQL("INSERT INTO accounts VALUES(234567,456,234567)");
 
-    Base.execSQL("insert into users (id,name,account,password,email) " +
-                "values(234567,'RECIEVER_TEST',23456567654,234567,'user1@example.com')");
+    Base.execSQL("INSERT INTO users VALUES(234567,'RECIEVER_TEST',234567,234567,'user1@example.com')");
 
-    Base.execSQL("insert into users (id,name,account,password,email) " +
-            "values(123456,'admin',1234567998,123456,'admin@example.com')");
+    Base.execSQL("INSERT INTO users values(123456,'admin',123456,123456,'admin@example.com')");
 
-    Base.execSQL("insert into users (id,name,account,password,email) " +
-                "values(345678,'MAILER_TEST',0,345678,'user2@example.com')");
+    Base.execSQL("INSERT INTO users VALUES(345678,'MAILER_TEST',3456,345678,'user2@example.com')");
+
     }
     @Override
     public void onUpgrade(SQLiteDatabase Base, int oldVersion, int newVersion) {
 
-    }
-
-    public void abrir(){
-        this.getWritableDatabase();
-    }
-    public void cerrar(){
-        this.close();
     }
 
     public boolean login(int id, int pass) throws SQLException  {

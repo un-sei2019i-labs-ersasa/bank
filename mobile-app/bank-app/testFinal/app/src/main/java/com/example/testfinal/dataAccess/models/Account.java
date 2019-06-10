@@ -2,17 +2,17 @@ package com.example.testfinal.dataAccess.models;
 
 public class Account {
     private int number;
-    private double balance;
+    private float balance;
     private int owner;
 
-    public Account(int number, int balance, int owner) {
+    public Account(int number, float balance, int owner) {
         this.number = number;
         this.balance = balance;
         this.owner = owner;
     }
 
-    public Account(int number) {
-        this.number=number;
+    public Account() {
+        this.number=0;
         this.balance=0;
         this.owner=0;
     }
@@ -25,11 +25,11 @@ public class Account {
         this.number = number;
     }
 
-    public double getBalance() {
+    public float getBalance() {
         return balance;
     }
 
-    public void setBalance(double balance) {
+    public void setBalance(float balance) {
         this.balance = balance;
     }
 

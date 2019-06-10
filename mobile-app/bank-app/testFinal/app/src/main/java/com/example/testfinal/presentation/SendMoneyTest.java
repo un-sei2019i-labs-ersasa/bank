@@ -17,7 +17,7 @@ import com.example.testfinal.dataAccess.models.User;
 public class SendMoneyTest extends AppCompatActivity {
     Button send_button;
     //TEST MAILER
-    int mailer= 1234567;
+    int mailer= 123456;
     SendMoneyController send= new SendMoneyController(this);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,12 +32,14 @@ public class SendMoneyTest extends AppCompatActivity {
             public void onClick(View v) {
                 EditText reciever = findViewById(R.id.txt_reciever);
                 EditText ammount= findViewById(R.id.trans_ammount);
-                if(reciever.getText().toString().isEmpty() || ammount.getText().toString().isEmpty()){
-                    Toast.makeText(getApplicationContext(),"CAMPO VACIO",Toast.LENGTH_LONG).show();
+                if(!reciever.getText().toString().isEmpty() && !ammount.getText().toString().isEmpty()){
+                    if(send.sendMoney(mailer,Integer.valueOf(reciever.getText().toString()),
+                            Float.valueOf(ammount.getText().toString()))){
+                        Toast.makeText(getApplicationContext(),"ENVIADO",Toast.LENGTH_LONG).show();
+                    }
                 }
-                if(send.sendMoney(mailer,Integer.valueOf(reciever.getText().toString()),
-                        Integer.valueOf(ammount.getText().toString()))){
-                    Toast.makeText(getApplicationContext(),"ENVIADO",Toast.LENGTH_LONG).show();
+                else{
+                    Toast.makeText(getApplicationContext(),"CAMPO VACIO",Toast.LENGTH_LONG).show();
                 }
             }
         });
