@@ -1,4 +1,4 @@
-package com.example.testfinal;
+package com.example.testfinal.presentation;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -7,6 +7,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.example.testfinal.R;
 import com.example.testfinal.dataAccess.database.Database;
 
 public class MainActivity extends AppCompatActivity {
@@ -30,7 +32,8 @@ public class MainActivity extends AppCompatActivity {
                 boolean cursor = helper.login(Integer.valueOf(id.getText().toString()),
                         Integer.valueOf(password.getText().toString()));
                 if (cursor) {
-                    openJoinActivity();
+                    //openJoinActivity();
+                    openSendMoneyTestActivity();
                 } else {
                     Toast.makeText(getApplicationContext(), "USUARIO O CONTRASENIA INCORRECTOS", Toast.LENGTH_LONG).show();
                 }
@@ -42,8 +45,8 @@ public class MainActivity extends AppCompatActivity {
                 }
             }});
     }
-    public void openJoinActivity(){
-        Intent intent = new Intent(this, JoinActivity.class );
+    public void openSendMoneyTestActivity(){
+        Intent intent = new Intent(this, SendMoneyTest.class );
         startActivity(intent);
     }
 }

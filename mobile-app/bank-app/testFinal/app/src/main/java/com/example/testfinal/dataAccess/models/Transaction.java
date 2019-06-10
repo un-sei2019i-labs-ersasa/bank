@@ -10,13 +10,13 @@ public class Transaction {
     private User reciever;
     private double ammount;
 
-    public Transaction(int id, Date date, User mailer, User reciever, double ammount) {
-        this.id = id;
+    public Transaction(Date date, User mailer, User reciever, double ammount) {
+        this.id=0;
         this.date = date;
         this.mailer = mailer;
         this.reciever = reciever;
         this.ammount = ammount;
-    }
+}
 
     public Transaction() {
     }
