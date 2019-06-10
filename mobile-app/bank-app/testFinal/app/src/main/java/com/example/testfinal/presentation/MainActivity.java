@@ -45,10 +45,6 @@ public class MainActivity extends AppCompatActivity {
                 }
             }});
     }
-    public void openJoinActivity(){
-        Intent intent = new Intent(this, JoinActivity.class );
-        startActivity(intent);
-    }
     public void openSendMoneyTestActivity(){
         Intent intent = new Intent(this, SendMoneyTest.class );
         startActivity(intent);
