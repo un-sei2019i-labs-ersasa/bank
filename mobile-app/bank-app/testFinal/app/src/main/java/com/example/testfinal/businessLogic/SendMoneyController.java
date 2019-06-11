@@ -24,24 +24,25 @@ public class SendMoneyController {
         ar= new AccountRepository(context);
     }
 
-    public boolean sendMoney(int mailer, int reciever, float ammount){
+    public String sendMoney(int mailer, int reciever, float ammount){
     User temp_mailer=ur.getUserById(mailer);
     double temp_balance= temp_mailer.getAccount().getBalance();
     if(temp_balance<ammount){
-        return false;
+        return "SALDO INSUFICIENTE";
     }
     User temp_reciever=ur.getUserById(reciever);
-    if(!temp_reciever.equals(null)) {}
+    if(temp_reciever==null){
+        return "RECEPTOR NO EXISTE";
+    }
         if (updateBalance(temp_mailer, temp_reciever, ammount)) {
             DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             Date date = new Date();
             dateFormat.format(date);
             Transaction trans = new Transaction(date, temp_mailer, temp_reciever, ammount);
             tr.createTransaction(trans);
-            return true;
+            return "ENVIADO";
         }
-
-    return false;
+    return "TRANSACCION INCORRECTA";
     }
 
     public boolean updateBalance(User mailer, User reciever, float ammount){
