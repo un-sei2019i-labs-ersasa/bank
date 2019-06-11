@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
                         Integer.valueOf(password.getText().toString()));
                 if (cursor) {
                     //openJoinActivity();
-                    openSendMoneyTestActivity();
+                    openSendMoneyTestActivity(Integer.valueOf(id.getText().toString()));
                 } else {
                     Toast.makeText(getApplicationContext(), "USUARIO O CONTRASENIA INCORRECTOS", Toast.LENGTH_LONG).show();
                 }
@@ -45,8 +45,9 @@ public class MainActivity extends AppCompatActivity {
                 }
             }});
     }
-    public void openSendMoneyTestActivity(){
+    public void openSendMoneyTestActivity(int id){
         Intent intent = new Intent(this, SendMoneyTest.class );
+        intent.putExtra("id",id);
         startActivity(intent);
     }
 }
